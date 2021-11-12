@@ -1254,9 +1254,11 @@ NSString *const kErrMsgInvalidCredential =
 
   // This code is necessary to avoid an iOS issue where when unlinking the `password` provider
   // the previous email still remains on the currentUser.
-  if ([user.providerData count] == 0) {
-    userData[@"email"] = [NSNull null];
-  }
+
+  // MARK: CustomToken 로그인 할 때, providerData 가 없다. 그래서 이메일이 없는 경우가 발생헀다.
+  // if ([user.providerData count] == 0) {
+  //   userData[@"email"] = [NSNull null];
+  // }
 
   // metadata.creationTimestamp as milliseconds
   long creationDate = (long)([user.metadata.creationDate timeIntervalSince1970] * 1000);
